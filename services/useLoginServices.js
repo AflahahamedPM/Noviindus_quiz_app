@@ -113,17 +113,14 @@ const useLoginServices = () => {
     const file = e?.target?.files?.[0];
     if (!file) return;
 
-    // revoke previous preview if any
     if (lastPreviewRef.current) {
       URL.revokeObjectURL(lastPreviewRef.current);
       lastPreviewRef.current = null;
     }
 
-    // create object url preview
     const preview = URL.createObjectURL(file);
     lastPreviewRef.current = preview;
 
-    // store file and preview in profileForm
     setProfileForm((prev) => ({
       ...prev,
       profile_image: { file, preview },

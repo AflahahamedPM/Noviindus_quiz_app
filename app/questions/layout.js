@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function QuestionsLayout({ children }) {
   return (
-    <section classname="min-h-screen">
+    <section className="min-h-screen">
       <Header />
       {children}
     </section>

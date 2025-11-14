@@ -1,6 +1,6 @@
 export const instructions = [
-  "You have 100 minutes to complete the test.",
-  "Test consists of 100 multiple-choice q’s.",
+  "You have 10 minutes to complete the test.",
+  "Test consists of 10 multiple-choice q’s.",
   "You are allowed 2 retest attempts if you do not pass on the first try.",
   "Each incorrect answer will incur a negative mark of -1/4.",
   "Ensure you are in a quiet environment and have a stable internet connection.",
