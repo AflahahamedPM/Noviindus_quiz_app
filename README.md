@@ -127,49 +127,49 @@ Frontend:
 novindus_quiz_app/
 │
 ├── app/                                # Next.js App Router
+│   ├── page.js                         # Root homepage
+│   ├── layout.js                       # Root layout
+│   ├── Provider.js                     
+│   │
 │   ├── home/
 │   │   ├── page.js
 │   │   └── layout.js
 │   │
 │   ├── questions/
-│   │   ├── page.js                     # Main questions page
+│   │   ├── page.js
 │   │   └── layout.js
 │   │
-│   ├── layout.js                       # Root layout
-|   |__ page.js
 │   └── globals.css
 │
-│
-├── components/                         # Reusable UI + Feature components
+├── components/                         # All UI + Feature Components
 │   ├── header/
 │   │   └── index.jsx
 │   │
-|   |── home/
-│   │   └── index.jsx
-|   |
 │   ├── login/
-│   │   |── LoginInputField.jsx
-|   |   ├── index.jsx
+│   │   ├── index.jsx
+│   │   └── LoginInputField.jsx
+│   │
+│   ├── home/
+│   │   └── index.jsx
 │   │
 │   ├── profile/
 │   │   └── index.jsx
 │   │
 │   ├── questions/
+│   │   ├── index.jsx
 │   │   ├── QuestionsContainer.jsx
 │   │   ├── SingleQuestionContainer.jsx
 │   │   ├── ComprehensiveContainer.jsx
 │   │   ├── SubmitModalContent.jsx
-│   │   ├── SuccessPage.jsx
-│   │   └── Dialogue.jsx
-|   |   |__ index.jsx
-|   |
-|   |____image.jsx 
-│   │
-│   └── ReusableComponents/
-│       └── Dialogue.jsx
+│   │   └── SuccessPage.jsx
 │
-|── config/
-│   ├── api.js
+│   ├── ReusableComponents/
+│   │   └── Dialogue.jsx                
+│   │
+│   └── image.jsx                       
+│
+├── config/
+│   └── api.js
 │
 ├── providers/
 │   ├── LoginProvider.js
@@ -177,11 +177,11 @@ novindus_quiz_app/
 │
 ├── hooks/
 │   ├── useAlert.js
-│   ├── useLogout.js
+│   └── useLogout.js
 │
 ├── services/
+│   ├── useLoginServices.js
 │   └── useQuestionServices.js
-|   └── useLoginServices.js
 │
 ├── utils/
 │   ├── instructions.js
