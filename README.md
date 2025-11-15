@@ -124,6 +124,8 @@ Frontend:
 
 📁 Project Structure
 
+```
+
 novindus_quiz_app/
 │
 ├── app/                                # Next.js App Router
@@ -197,6 +199,9 @@ novindus_quiz_app/
 ├── postcss.config.js
 ├── package.json
 └── README.md
+
+```
+
 
 
 🧪 How to Run
