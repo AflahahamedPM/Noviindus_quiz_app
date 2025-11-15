@@ -29,73 +29,6 @@ const getLanguage = () => {
 };
 
 const APIRequest = {
-  // request: async function (method, endpoint, body = null, options = {}) {
-  //   const url = getApiUrl(endpoint);
-
-  //   let config = {
-  //     method: method,
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       ...options.headers,
-  //     },
-  //     // credentials: "include",
-  //     ...options,
-  //   };
-
-  //   // Add auth token
-  //   if (isBrowser()) {
-  //     const token = getToken();
-  //     if (token) {
-  //       config.headers.authToken = token;
-  //     }
-
-  //     // Add language header
-  //     // const language = getLanguage();
-  //     // if (language) {
-  //     //   config.headers["Accept-Language"] = language;
-  //     // }
-  //   }
-
-  //   // Add body if provided
-  //   if (body) {
-  //     config.body = typeof body === "string" ? body : JSON.stringify(body);
-  //   }
-
-  //   try {
-  //     const response = await fetch(url, config);
-
-  //     // Handle token refresh from response headers (if your API sends new tokens)
-  //     if (isBrowser() && response.headers) {
-  //       // Check if API sends a new auth token in response headers
-  //       const newToken = response.headers.get("x-auth-token") || response.headers.get("authorization");
-  //       if (newToken) {
-  //         // Remove "Bearer " prefix if present
-  //         const token = newToken.replace(/^Bearer\s+/i, "");
-  //         localStorage.setItem("token", token);
-  //       }
-  //     }
-
-  //     // Parse response
-  //     const contentType = response.headers.get("content-type");
-  //     let data;
-
-  //     if (contentType && contentType.includes("application/json")) {
-  //       data = await response.json();
-  //     } else {
-  //       const text = await response.text();
-  //       data = { returncode: 0, errors: [{ errormsg: text || "Invalid response format" }] };
-  //     }
-
-  //     return this.returnResponse(data, response);
-  //   } catch (error) {
-  //     console.error("API Request Error:", error);
-  //     return {
-  //       returncode: 0,
-  //       errors: [{ errormsg: error.message || "Timeout Error." }],
-  //     };
-  //   }
-  // },
 
   multipartFormDataRequest: async function (method, endpoint, body = null) {
     const url = getApiUrl(endpoint);
@@ -103,10 +36,8 @@ const APIRequest = {
     let config = {
       method: method,
       headers: {
-        // Don't set Content-Type for FormData, browser will set it with boundary
         "Accept-Language": getLanguage(),
       },
-      // credentials: "include",
     };
 
     // Add auth token
@@ -176,15 +107,6 @@ const APIRequest = {
       };
     }
 
-    // Handle returncode 2 (logout/redirect)
-    if (response.returncode === 2) {
-      if (isBrowser()) {
-        // Clear token and redirect to login
-        localStorage.removeItem("token");
-        window.location.href = "/login";
-      }
-      return response;
-    }
 
     // Return response as-is for other cases
     return Promise.resolve(response);
