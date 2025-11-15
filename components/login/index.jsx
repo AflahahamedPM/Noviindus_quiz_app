@@ -8,7 +8,7 @@ import { useLoginData } from "../../providers/LoginProvider";
 
 const Login = () => {
   const { isLoggedIn } = useLoginData();
-  
+
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       <Image
@@ -21,7 +21,7 @@ const Login = () => {
 
       <div className="relative z-10 flex justify-center items-center min-h-screen px-4 py-8">
         <div className="bg-white rounded-lg shadow-2xl flex flex-col md:flex-row w-full max-w-4xl  overflow-hidden">
-          <div className=" md:flex flex-1 bg-linear-to-b from-[#1c3141] to-[#487EA7] items-center justify-center p-8">
+          <aside className=" md:flex flex-1 bg-linear-to-b from-[#1c3141] to-[#487EA7] items-center justify-center p-8">
             <Image
               src={loginImg}
               alt="login_img"
@@ -29,11 +29,11 @@ const Login = () => {
               height={500}
               className="object-contain"
             />
-          </div>
+          </aside>
 
-          <div className="flex-1 flex p-6 md:p-8">
+          <section className="flex-1 flex p-6 md:p-8">
             {isLoggedIn ? <Profile /> : <LoginInputField />}
-          </div>
+          </section>
         </div>
       </div>
     </div>

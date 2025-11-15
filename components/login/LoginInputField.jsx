@@ -13,21 +13,26 @@ const LoginInputField = () => {
     otp,
     setOtp,
     verifyOtp,
-    isLoading
+    isLoading,
   } = useLoginData();
 
   const handleInputChange = (e) => {
+    const value = e.target.value;
     if (isOtpSent) {
-      const value = e.target.value;
       if (/^\d*$/.test(value) && value.length <= 6) {
         setOtp(value);
       }
     } else {
-      const value = e.target.value;
       if (/^\d*$/.test(value) && value.length <= 10) {
         setMobileNo(value);
       }
     }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (isOtpSent) verifyOtp();
+    else handleLogin();
   };
 
   return (
@@ -45,7 +50,7 @@ const LoginInputField = () => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <TextField
             placeholder={isOtpSent ? "123456" : "1234 567891"}
@@ -93,14 +98,17 @@ const LoginInputField = () => {
         )}
 
         <button
-          onClick={isOtpSent ? verifyOtp : handleLogin}
+          type="submit"
+          aria-live="polite"
           className="w-full md:mt-40 cursor-pointer bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-4 rounded-lg transition-colors"
         >
-          {
-            isLoading ? <CircularProgress size={20} color="white"/> : "Get Started"
-          }
+          {isLoading ? (
+            <CircularProgress size={20} color="white" />
+          ) : (
+            "Get Started"
+          )}
         </button>
-      </div>
+      </form>
     </div>
   );
 };

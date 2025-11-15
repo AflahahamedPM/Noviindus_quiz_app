@@ -7,8 +7,11 @@ import useLogout from "@/hooks/useLogout";
 const Header = () => {
   const { logout } = useLogout();
   return (
-    <header>
-      <div className="w-full bg-white shadow-md py-4 px-6 flex items-center">
+    <header className="bg-white shadow-md">
+      <nav
+        aria-label="Main Navigation"
+        className="w-full py-4 px-6 flex items-center"
+      >
         <div className="flex-1" />
         <div className="flex-none">
           <Image src={headerLogo} alt="Header Logo" width={120} height={100} />
@@ -21,7 +24,7 @@ const Header = () => {
             Log out
           </button>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

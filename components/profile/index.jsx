@@ -13,7 +13,7 @@ const Profile = () => {
     setProfileForm,
     submitProfile,
     isLoading,
-    handleRemoveImage
+    handleRemoveImage,
   } = useLoginData();
 
   const fileInputRef = useRef(null);
@@ -28,13 +28,18 @@ const Profile = () => {
     }));
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    submitProfile();
+  };
+
   return (
     <div className="w-full flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold text-gray-800">
           Add Your Details
         </h2>
-        <div className="">
+        <form onSubmit={onSubmit} className="">
           <div
             onClick={handleClick}
             className="flex flex-col justify-center cursor-pointer items-center align-middle p-4 rounded-xl border-dashed border-2 h-36 border-[#CECECE] w-1/3 mx-auto mt-4"
@@ -74,6 +79,7 @@ const Profile = () => {
           <div className="flex flex-col gap-2 mt-4">
             <TextField
               label="Name"
+              type="text"
               required
               value={profileForm?.name}
               onChange={(e) => handleInputChange(e.target.value, "name")}
@@ -88,6 +94,7 @@ const Profile = () => {
 
             <TextField
               label="Qualification"
+              type="text"
               required
               value={profileForm?.qualification}
               onChange={(e) =>
@@ -97,7 +104,8 @@ const Profile = () => {
           </div>
 
           <button
-            onClick={submitProfile}
+            type="submit"
+            aria-live="polite"
             className="w-full mt-4 cursor-pointer bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-4 rounded-lg transition-colors"
           >
             {isLoading ? (
@@ -106,7 +114,7 @@ const Profile = () => {
               "Get Started"
             )}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const HomeComponent = () => {
   const router = useRouter();
   return (
     <div className="w-full bg-[#F4FCFF] min-h-fit">
-    <div className=" sm:w-1/2 w-11/12 overflow-hidden mx-auto py-5 flex flex-col justify-center items-center">
+    <section className=" sm:w-1/2 w-11/12 overflow-hidden mx-auto py-5 flex flex-col justify-center items-center">
       <h1 className="text-2xl font-bold mb-4 text-[#1C3141]">
         Web Developement MCQ
       </h1>
@@ -47,7 +47,7 @@ const HomeComponent = () => {
       >
         Start Test
       </button>
-    </div>
+    </section>
     </div>
   );
 };
