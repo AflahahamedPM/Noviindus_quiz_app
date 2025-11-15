@@ -35,14 +35,14 @@ const SingleQuestionContainer = () => {
       title: "Previous",
       bgColor: "#CECECE",
       textColor: "#1C3141",
-      onclick: () => handlePreviousClick(),
+      onclick: (questionId, qtnNumber) => handlePreviousClick(questionId, qtnNumber),
     },
     {
       id: 3,
       title: "Next",
       bgColor: "#1C3141",
       textColor: "#FFFFFF",
-      onclick: () => handleNextClick(),
+      onclick: (questionId, qtnNumber) => handleNextClick(questionId, qtnNumber),
     },
   ];
   return (
@@ -59,7 +59,7 @@ const SingleQuestionContainer = () => {
       {selectedQuestion?.comprehension && (
         <button
           onClick={() => setIsComprehensiveModalOpen(true)}
-          className="flex my-3 max-sm:w-full w-1/2 justify-between items-center p-2 bg-[#177A9C] text-white rounded-md cursor-pointer"
+          className="flex my-3 max-lg:w-full w-1/2 justify-between items-center p-2 bg-[#177A9C] text-white rounded-md cursor-pointer"
         >
           <Image src={textIcon} alt="textIcon" height={20} width={20} />
           <p>Read Comprehensive Paragraph</p>
@@ -120,7 +120,7 @@ const SingleQuestionContainer = () => {
             key={btn.id}
             style={{ backgroundColor: btn.bgColor, color: btn.textColor }}
             className={`w-fit  px-4 py-2 gap-2 rounded cursor-pointer`}
-            onClick={() => btn.onclick(selectedQuestion?.question_id)}
+            onClick={() => btn.onclick(selectedQuestion?.question_id, selectedQuestion?.number)}
           >
             {btn.title}
           </button>

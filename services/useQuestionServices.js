@@ -241,6 +241,7 @@ const useQuestionServices = () => {
   const questionsRef = useRef(questions);
   const hasSubmittedRef = useRef(false);
   const intervalRef = useRef(null);
+  const THRESHOLD_MS = 60000;
 
   useEffect(() => {
     questionsRef.current = questions;
@@ -256,7 +257,6 @@ const useQuestionServices = () => {
   useEffect(() => {
     if (questionsWrapper?.total_time) {
       const tickMs = 1000;
-      const THRESHOLD_MS = 60000;
 
       intervalRef.current = setInterval(() => {
         setTimer((prev) => {
@@ -331,15 +331,38 @@ const useQuestionServices = () => {
     [state.questions.length, publishNotification]
   );
 
-  const handleNextClick = useCallback(() => {
-    if (!state.questions?.length) return;
-    dispatch({ type: ACTIONS.NEXT });
-  }, [state.questions.length]);
+  const handleNextClick = useCallback(
+    (qstnId, qstnNumber) => {
 
-  const handlePreviousClick = useCallback(() => {
-    if (!state.questions?.length) return;
-    dispatch({ type: ACTIONS.PREV });
-  }, [state.questions.length]);
+      if (!state.questions?.length) return;
+      if (questionsRef.current[qstnNumber]?.timeSpent >= THRESHOLD_MS) {
+        publishNotification(
+          "You have used alotted time for the next question, please select any other question",
+          "warning"
+        );
+        return;
+      }
+      dispatch({ type: ACTIONS.NEXT });
+    },
+    [state.questions.length]
+  );
+
+  const handlePreviousClick = useCallback(
+    (qstnId, qstnNumber) => {
+      const prevQstnIndex = qstnNumber - 2;
+
+      if (!state.questions?.length) return;
+      if (questionsRef.current[prevQstnIndex]?.timeSpent >= THRESHOLD_MS) {
+        publishNotification(
+          "You have used alotted time for the previous question, please select any other question",
+          "warning"
+        );
+        return;
+      }
+      dispatch({ type: ACTIONS.PREV });
+    },
+    [state.questions.length]
+  );
 
   const handleMarkForReview = useCallback(
     (questionId) => {
@@ -358,6 +381,14 @@ const useQuestionServices = () => {
       const idx = state.questions.findIndex(
         (question) => question?.question_id === qtn.question_id
       );
+
+      if (questionsRef.current[idx]?.timeSpent >= THRESHOLD_MS) {
+        publishNotification(
+          "You have used alotted time for the selected question, please select any other question",
+          "warning"
+        );
+        return;
+      }
       if (idx !== -1)
         dispatch({ type: ACTIONS.SET_SELECTED_INDEX, payload: idx });
     },

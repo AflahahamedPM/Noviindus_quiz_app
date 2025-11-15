@@ -16,8 +16,8 @@ const Dialogue = ({
 }) => {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-      <div className="flex justify-between items-center mx-auto w-11/12 border-b border-[#CECECE]">
-        <DialogTitle>{dialogueTitle}</DialogTitle>
+      <div className="flex justify-between items-center mx-auto lg:w-11/12 w-fit overflow-hidden border-b border-[#CECECE]">
+        <DialogTitle sx={{fontSize:"12px", fontWeight:500}}>{dialogueTitle}</DialogTitle>
         {hasCloseButton && (
           <CloseOutlined onClick={handleClose} cursor="pointer" />
         )}

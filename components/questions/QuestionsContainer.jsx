@@ -63,7 +63,7 @@ const QuestionsContainer = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:flex sm:justify-between sm:items-center">
+      <div className="grid grid-cols-2 gap-4 lg:flex lg:justify-between lg:items-center">
         {indications.map((option) => (
           <div key={option.id} className="flex gap-2 items-center">
             <div
